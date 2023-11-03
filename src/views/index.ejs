@@ -1,0 +1,37 @@
+<%- include('includes/head'); %> <!--isso serve para incluir a pasta head nesse arquivo e funcionar normal-->
+
+    <section class="container">
+    <h1>
+        <!--Exibindo o título    <%= %> tags do ejs - foi usado para pegar variável no middleware
+             titulo: 'Este será o <span style="color:red;"> título</span> da página'
+        o sinal de = escapa caracteres, é mais seguro de ser usado, ele exibe EXATAMENTE(exibe a tag do css ao invés de executar) o que vc escrever
+        o sinal de - executaria o comando, ele não escapa caracteres
+        <%= titulo %><br>
+        <%- titulo %> -->
+        <!--      Checando se a variável título foi setada(enviada)
+        <% if(typeof titulo !== 'undefined') { %>
+            <%= titulo %>
+        <% } else { %>    - para fechar as {} do if tem que fazer esse procedimento 
+            O título não foi enviado
+        <% }  %>       
+        para  comentar algo com ejs <%# exepmlo %> -->
+        <!-- fazendo um for 
+        <% numeros.forEach(num => { %>
+            <%= num %><br>
+        <% }); %>      
+        <% for(let i = 0; i < numeros.length; i++) { %>
+            <%= numeros[i] %><br>
+        <% }; %>     -->
+        <%= umaVariaveLocal %> <!--exibindo a variavel de middleware-->
+    </h1>
+    <form action="/" method="post">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <!--essa linha acima  cria o csfr token e protege o formulário-->
+        <label>Cliente</label>
+        <input type="text" name="cliente">
+        <button>Submit</button>
+    </form>
+</section>
+
+<%- include('includes/footer'); %>
+
