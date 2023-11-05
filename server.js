@@ -37,7 +37,6 @@ app.use(helmet());
 app.use(express.urlencoded({extended:true}));//fala que pode postar formulário p dentro da nossa aplicação
 
 app.use(express.json());
-
 app.use(express.static(path.resolve(__dirname, 'public')));
 
 //configurando a sessão
@@ -66,7 +65,6 @@ app.use(csrf());
 app.use(middlewareGlobal);//ta disponivel p ser usada em todos os locais pois não enviou rota
 app.use(checkCsrfError);
 app.use(csrfMiddleware);
-
 app.use(routes);//falou p o express usar minhas rotas
 
 //app.on ta capturando o sinal do emit
