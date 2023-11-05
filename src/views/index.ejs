@@ -1,37 +1,48 @@
-<%- include('includes/head'); %> <!--isso serve para incluir a pasta head nesse arquivo e funcionar normal-->
+<%- include('includes/head') %>
+<%- include('includes/nav') %>
 
-    <section class="container">
-    <h1>
-        <!--Exibindo o título    <%= %> tags do ejs - foi usado para pegar variável no middleware
-             titulo: 'Este será o <span style="color:red;"> título</span> da página'
-        o sinal de = escapa caracteres, é mais seguro de ser usado, ele exibe EXATAMENTE(exibe a tag do css ao invés de executar) o que vc escrever
-        o sinal de - executaria o comando, ele não escapa caracteres
-        <%= titulo %><br>
-        <%- titulo %> -->
-        <!--      Checando se a variável título foi setada(enviada)
-        <% if(typeof titulo !== 'undefined') { %>
-            <%= titulo %>
-        <% } else { %>    - para fechar as {} do if tem que fazer esse procedimento 
-            O título não foi enviado
-        <% }  %>       
-        para  comentar algo com ejs <%# exepmlo %> -->
-        <!-- fazendo um for 
-        <% numeros.forEach(num => { %>
-            <%= num %><br>
-        <% }); %>      
-        <% for(let i = 0; i < numeros.length; i++) { %>
-            <%= numeros[i] %><br>
-        <% }; %>     -->
-        <%= umaVariaveLocal %> <!--exibindo a variavel de middleware-->
-    </h1>
-    <form action="/" method="post">
-        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-        <!--essa linha acima  cria o csfr token e protege o formulário-->
-        <label>Cliente</label>
-        <input type="text" name="cliente">
-        <button>Submit</button>
-    </form>
-</section>
 
-<%- include('includes/footer'); %>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+
+        <div class="col-lg-8 my-3">
+            <h1 class="text-center">Agenda</h1>
+            <p class="text-center lead">Seus contatos estão abaixo</p>
+        
+            <%-include('includes/messages')%>
+            
+            <% if(contatos.length > 0) { %>
+            <div class="responsive-table"> <!--criando uma tabela-->
+                <table class="table my-3"> <!--o my-3 da espaço-->
+                    <%contatos.forEach(contato => { %>
+                    <tr>
+                        <td><%=contato.nome%></td>
+                        <td><%=contato.sobrenome%></td>
+                        <td><%=contato.telefone%></td>
+                        <td><%=contato.email%></td>
+                        <td><a href="/contato/index/<%=contato._id%>">Editar</a></td>
+                        <td><a class="text-danger" href="/contato/delete/<%=contato._id%>">Excluir</a></td>
+                       
+                    </tr>
+                <% }); %>
+                </table>
+            </div>
+            <% } else { %>
+                <p class="text-center lead">Não existem contatos na sua agenda.</p>
+            <% } %>
+        </div>
+                
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+
+
+<%- include('includes/footer') %>
+
+
+    
+
+
+
 

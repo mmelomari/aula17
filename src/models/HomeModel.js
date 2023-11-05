@@ -6,7 +6,6 @@ const mongoose = require('mongoose');
 const HomeSchema = new mongoose.Schema({
     //titulo é a configuração dos dados, nesse caso o titulo com o required: true ta dizendo que é obrigatório ser enviado
     titulo: { type: String, required: true },
-    descricao: String
 });
 
 //criando o modo
